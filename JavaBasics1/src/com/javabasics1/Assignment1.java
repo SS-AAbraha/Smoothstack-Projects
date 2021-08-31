@@ -52,7 +52,7 @@ public class Assignment1 {
         System.out.println("...........");
 
         // upside-down pyramid
-        System.out.println("...........");
+        System.out.println("............");
         for(int i=7;i>0;i=i-2){
             System.out.printf(" ");
             int spaces = (7-i)/2;
