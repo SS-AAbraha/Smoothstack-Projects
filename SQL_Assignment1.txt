@@ -1,0 +1,213 @@
+1.	0
+	
+	Query; 
+	SELECT cps.bookId, bk.title, cps.branchId, lib.branchName ,cps.noOfCopies
+	FROM (tbl_book_copies cps), (tbl_book bk), (tbl_library_branch lib) 
+	WHERE cps.bookId = 1 AND cps.bookId = bk.bookId AND lib.branchName = 'Sharpstown'
+	;
+
+2.	The "Arkansas" Branch (ID:4) has 100 copies of the book "The Lost Tribe".
+	All other Branches don't have any copies.
+	
+	Query:
+	SELECT bk_cp.bookId, bk.title, lib.branchName,  bk_cp.noOfCopies
+	FROM (tbl_book_copies bk_cp), (tbl_book bk), (tbl_library_branch lib)
+	WHERE bk.title = "The Lost Tribe" AND bk_cp.bookId = bk.bookId AND lib.branchId = bk_cp.branchId
+	;
+	
+3.	Borrowers with no books checked out: 
+   cardNo   	name
+	498		Joice Northall
+	497		Kerrin Ludy
+	494		Rozele Casotti
+	483		Wren Crossland
+	477		Serena Videneev
+	474		Son Korb
+	463		Andre Holborn
+	447		Mord Holah
+	432		Hillier Bayfield
+	426		Benito Buckleigh
+	425		Jordain Taplin
+	424		Calvin Cecely
+	420		Cassie Minet
+	394		Walt Chandlar
+	390		Danila Janiak
+	381		Layla Dimond
+	369		Ninette Hernik
+	360		Haley M'Chirrie
+	353		Leshia McGuirk
+	350		Peri Salla
+	338		Erik Gave
+	319		Delmor Wittier
+	312		Marshall Tillard
+	303		Frederigo Jumont
+	302		Madelon Craggs
+	298		Bette-ann Lumley
+	295		Jareb Stonehewer
+	289		Matelda Girardet
+	287		Sephira Da Costa
+	284		Allene Glozman
+	283		Roselle Chellenham
+	279		Yancy Febre
+	278		Welch Wraxall
+	265		Skippie Lilian
+	263		Conchita Baddoe
+	251		Had Dimitrov
+	244		Beverie Longhirst
+	236		Nester Layzell
+	231		Fawne Persey
+	207		Kimberley Efford
+	205		Seymour Jewers
+	201		Rutledge Capoun
+	197		Tallia Bunney
+	195		Katti Swin
+	189		Rhody Windows
+	176		Stacee Casaccia
+	168		Garret Hawkin
+	165		Nico Dovidian
+	164		Chere Hexam
+	163		Emmalynne Mansford
+	159		Malinde Shimony
+	156		Margette Swigger
+	145		Isadora Pestell
+	134		Dinah Suddock
+	130		Troy Sawdy
+	124		Andriana Andersson
+	123		Jyoti Breitling
+	103		Adrienne Collishaw
+	92		Yehudi McMurdo
+	74		Bale Seath
+	57		Bree Scholtis
+	54		Frances Yitzowitz
+	52		Sella Penwarden
+	38		Brant Bartholat
+	37		Carl MacAlaster
+	26		Stinky Radbond
+	23		Sondra Peasey
+	12		Alaine Galway
+	4		Marsh Stud
+	
+	Query: 
+	SELECT brw.cardNo, brw.name, count(lns.bookId) as booksNotBorrowed
+	FROM (tbl_borrower brw), (tbl_book_loans lns)
+	WHERE brw.cardNo != lns.CardNo 
+	GROUP BY brw.cardNo
+	HAVING booksNotBorrowed > 999
+	;
+	
+4. 
+	SELECT bk.title as "book title", brw.name as "borrower name", brw.address as "borrower address"
+	FROM  (tbl_book_loans lns), (tbl_book bk), (tbl_borrower brw)
+	WHERE lns.branchId = 1 AND lns.cardNo = brw.cardNo AND lns.bookId = bk.bookId AND DATE(lns.dueDate) = current_date()
+	;	
+	
+	This query would return all the books due that day along with the borrowers name and address, but there are no books due today so there is no return.
+	
+5.	 Branch Name
+	Sharpstown		15
+	Central			21
+	Boyd			21
+	Arkansas		16
+	Pierstorff		31
+	Prentice		20
+	Derek			7
+	Nelson			17
+	Hoard			21
+	Dakota			24
+	Transport		30
+	Hoffman			17
+	David			15
+	Longview		23
+	Thackeray		15
+	Stoughton		21
+	Tennessee		29
+	Knutson			25
+	Redwing			17
+	Steensland		24
+	Eagle Crest		19
+	Sommers			14
+	Southridge		8
+	Kenwood			14
+	Scofield		24
+	Jenifer			31
+	Marquette		26
+	Red Cloud		19
+	Forest			21
+	Bartelt			26
+	Cambridge		20
+	Homewood		20
+	Sunbrook		12
+	Northview		24
+	Banding			16
+	Menomonie		26
+	Barnett			30
+	Ridge Oak		16
+	Trailsway		19
+	Farragut		25
+	Ruskin			15
+	Victoria		19
+	Blaine			14
+	Jackson			19
+	Birchwood		18
+	Hauk			17
+	Twin Pines		23
+	Clyde Gallagher	19
+	Mayfield		14
+	Atwood			23
+	
+	Query:
+	SELECT lib.branchName as "Branch Name", count(lib.branchName) as "Total Books Loaned Out"
+	FROM (tbl_book_loans lns), (tbl_library_branch lib)
+	WHERE lib.branchId = lns.branchId 
+	GROUP BY lib.branchId
+	ORDER BY lns.branchId ASC
+	;
+	
+6.	
+		Name				  Address 		  Books Borrowed
+  Derron Larking		3051 Elgar Hill				6
+  Calida Radage			7569 Mendota Terrace		6
+  Baird Ruttgers		2 Forest Run Park			6
+  Ricky Hurndall		7 Stoughton Junction		6
+  Abie Padden			40 Colorado Point			5
+  Garrard Sangster		957 Rockefeller Road		5
+  Chev Bardnam			67805 Brentwood Avenue		5
+  Gayleen Tomaini		0 Donald Point				5
+  Gherardo Badby		63655 Hazelcrest Alley		5
+  Abran Ciementini		683 Truax Circle			5
+  Mitzi Blondel			005 Surrey Center			5
+  Trefor O'Hagerty		32 Mallory Lane				5
+  Theda O' Borne		29 8th Avenue				5
+  Tripp Foyle			9 Service Alley				5
+  Jodie Danbury			7863 Garrison Court			5
+  Kareem Woollhead		34283 Dorton Court			5
+  Alikee Mattheus		056 Sachs Junction			5
+  Thom Hulett			65 8th Way					5
+  Krystle Dimmer		3848 Becker Pass			5
+  Guillemette Carlyon	05181 Sheridan Street		5
+  Chicky Flannigan		52788 Grover Junction		5
+  Raina Askie			03 Mallory Drive			5
+  Kali Leney			30924 Forest Dale Parkway	5
+  Mickie Kaley			6 Grasskamp Avenue			5
+  Garwin Sousa			3776 Meadow Vale Road		5
+  Leif Blind			0136 Becker Way				5
+  Annalise Fawthorpe	330 Main Pass				5
+  Monte Pymm			0981 Riverside Street		5
+  Lissa Scandroot		9 Beilfuss Terrace			5
+  
+	Query:
+	SELECT brw.name, brw.address, count(lns.bookId) as booksBorrowed
+	FROM (tbl_borrower brw), (tbl_book_loans lns)
+	WHERE brw.cardNo = lns.cardNo
+	GROUP BY brw.name
+	HAVING booksBorrowed > 4
+	ORDER BY booksborrowed DESC
+	;
+	
+7.	There are no copies of books authored by "Stephen King" are at branch "Central"
+
+	Query:
+	SELECT aut.authorName, bk.title, bk_cp.noOfCopies 
+	FROM (tbl_library_branch lib), (tbl_book_copies bk_cp), (tbl_book bk), (tbl_author aut)
+	WHERE lib.branchName = 'Central' AND aut.authorName = "Stephen King" AND lib.branchId = bk_cp.branchId AND bk_cp.bookId = bk.bookId AND bk.authId = aut.authorId
+	;
