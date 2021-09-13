@@ -103,7 +103,7 @@
 	
 	This query would return all the books due that day along with the borrowers name and address, but there are no books due today so there is no return.
 	
-5.	 Branch Name
+5.	 Branch Name	Total Books Loaned Out
 	Sharpstown		15
 	Central			21
 	Boyd			21
@@ -151,7 +151,7 @@
 	Birchwood		18
 	Hauk			17
 	Twin Pines		23
-	Clyde Gallagher	19
+	Clyde Gallagher		19
 	Mayfield		14
 	Atwood			23
 	
@@ -164,16 +164,16 @@
 	;
 	
 6.	
-		Name				  Address 		  Books Borrowed
+	Name				  Address 		  Books Borrowed
   Derron Larking		3051 Elgar Hill				6
-  Calida Radage			7569 Mendota Terrace		6
+  Calida Radage			7569 Mendota Terrace			6
   Baird Ruttgers		2 Forest Run Park			6
-  Ricky Hurndall		7 Stoughton Junction		6
+  Ricky Hurndall		7 Stoughton Junction			6
   Abie Padden			40 Colorado Point			5
-  Garrard Sangster		957 Rockefeller Road		5
-  Chev Bardnam			67805 Brentwood Avenue		5
+  Garrard Sangster		957 Rockefeller Road			5
+  Chev Bardnam			67805 Brentwood Avenue			5
   Gayleen Tomaini		0 Donald Point				5
-  Gherardo Badby		63655 Hazelcrest Alley		5
+  Gherardo Badby		63655 Hazelcrest Alley			5
   Abran Ciementini		683 Truax Circle			5
   Mitzi Blondel			005 Surrey Center			5
   Trefor O'Hagerty		32 Mallory Lane				5
@@ -182,17 +182,17 @@
   Jodie Danbury			7863 Garrison Court			5
   Kareem Woollhead		34283 Dorton Court			5
   Alikee Mattheus		056 Sachs Junction			5
-  Thom Hulett			65 8th Way					5
+  Thom Hulett			65 8th Way				5
   Krystle Dimmer		3848 Becker Pass			5
-  Guillemette Carlyon	05181 Sheridan Street		5
-  Chicky Flannigan		52788 Grover Junction		5
+  Guillemette Carlyon		05181 Sheridan Street			5
+  Chicky Flannigan		52788 Grover Junction			5
   Raina Askie			03 Mallory Drive			5
-  Kali Leney			30924 Forest Dale Parkway	5
+  Kali Leney			30924 Forest Dale Parkway		5
   Mickie Kaley			6 Grasskamp Avenue			5
-  Garwin Sousa			3776 Meadow Vale Road		5
+  Garwin Sousa			3776 Meadow Vale Road			5
   Leif Blind			0136 Becker Way				5
-  Annalise Fawthorpe	330 Main Pass				5
-  Monte Pymm			0981 Riverside Street		5
+  Annalise Fawthorpe		330 Main Pass				5
+  Monte Pymm			0981 Riverside Street			5
   Lissa Scandroot		9 Beilfuss Terrace			5
   
 	Query:
